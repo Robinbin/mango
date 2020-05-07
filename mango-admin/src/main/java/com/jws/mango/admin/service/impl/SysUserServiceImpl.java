@@ -24,7 +24,11 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public int save(SysUser record) {
-        return sysUserMapper.insert(record);
+        if (record.getId() == null || record.getId() == 0) {
+            return sysUserMapper.insertSelective(record);
+        } else {
+            return sysUserMapper.updateByPrimaryKey(record);
+        }
     }
 
     @Override

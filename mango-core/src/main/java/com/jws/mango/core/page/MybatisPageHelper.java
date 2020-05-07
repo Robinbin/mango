@@ -13,7 +13,7 @@ public class MybatisPageHelper {
         return findPage(pageRequest, mapper, findPage);
     }
 
-    private static PageResult findPage(PageRequest pageRequest, Object mapper, String queryMethodName, Object... args) {
+    public static PageResult findPage(PageRequest pageRequest, Object mapper, String queryMethodName, Object... args) {
         int pageNum = pageRequest.getPageNum();
         int pageSize = pageRequest.getPageSize();
         PageHelper.startPage(pageNum, pageSize);
