@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="generator.properties"/>
+    <context id="MySqlContext" targetRuntime="MyBatis3" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 为模型生成序列化方法-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!-- 为生成的Java模型创建一个toString方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <!--生成mapper.xml时覆盖原文件-->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
+        <commentGenerator type="com.jws.mango.admin.util.CommentGenerator">
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+            <property name="addRemarkComments" value="true"/>
+        </commentGenerator>
+
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="${jdbc.driverClass}"
+                        connectionURL="${jdbc.connectionURL}"
+                        userId="${jdbc.userId}"
+                        password="${jdbc.password}">
+            <!--解决mysql驱动升级到8.0后不生成指定数据库代码的问题-->
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+           NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.jws.mango.admin.model" targetProject="src/main/java"/>
+        <sqlMapGenerator targetPackage="mybatis" targetProject="src/main/resources"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.jws.mango.admin.mapper" targetProject="src/main/java"/>
+
+        <!-- 指定数据库表
+        domainObjectName：生成的domain类的名字,当表名和domain类的名字有差异时一定要设置，如果不设置，直接使用表名作为domain类的名字；
+        可以设置为somepck.domainName，那么会自动把domainName类再放到somepck包里面；
+        -->
+        <!--        <table tableName="sys_config" domainObjectName="SysConfig"></table>
+                <table tableName="sys_dept" domainObjectName="SysDept"></table>
+                <table tableName="sys_dict" domainObjectName="SysDict"></table>
+                <table tableName="sys_log" domainObjectName="SysLog"></table>
+                <table tableName="sys_login_log" domainObjectName="SysLoginLog"></table>
+                <table tableName="sys_menu" domainObjectName="SysMenu"></table>
+                <table tableName="sys_role" domainObjectName="SysRole"></table>
+                <table tableName="sys_role_dept" domainObjectName="SysRoleDept"></table>
+                <table tableName="sys_role_menu" domainObjectName="SysRoleMenu"></table>
+                <table tableName="sys_user" domainObjectName="SysUser"></table>
+                <table tableName="sys_user_role" domainObjectName="SysUseRole"></table>-->
+
+        <table tableName="%">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>
