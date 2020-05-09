@@ -1,30 +1,12 @@
 package com.jws.mango.admin.mapper;
 
+import com.jws.mango.admin.model.SysDict;
 import com.jws.mango.admin.model.SysLog;
 import com.jws.mango.admin.model.SysLogExample;
 import java.util.List;
+
+import com.jws.mango.core.mapper.CommonMapper;
 import org.apache.ibatis.annotations.Param;
 
-public interface SysLogMapper {
-    long countByExample(SysLogExample example);
-
-    int deleteByExample(SysLogExample example);
-
-    int deleteByPrimaryKey(Long id);
-
-    int insert(SysLog record);
-
-    int insertSelective(SysLog record);
-
-    List<SysLog> selectByExample(SysLogExample example);
-
-    SysLog selectByPrimaryKey(Long id);
-
-    int updateByExampleSelective(@Param("record") SysLog record, @Param("example") SysLogExample example);
-
-    int updateByExample(@Param("record") SysLog record, @Param("example") SysLogExample example);
-
-    int updateByPrimaryKeySelective(SysLog record);
-
-    int updateByPrimaryKey(SysLog record);
+public interface SysLogMapper extends CommonMapper<SysLog, Long> {
 }

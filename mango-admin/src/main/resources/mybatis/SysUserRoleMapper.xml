@@ -240,4 +240,9 @@
       last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="findAll" resultType="com.jws.mango.admin.model.SysUserRole">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_user_role
+  </select>
 </mapper>

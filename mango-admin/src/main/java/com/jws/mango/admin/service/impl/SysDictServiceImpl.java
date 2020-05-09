@@ -1,6 +1,7 @@
 package com.jws.mango.admin.service.impl;
 
 import com.jws.mango.admin.mapper.SysDictMapper;
+import com.jws.mango.admin.model.SysDept;
 import com.jws.mango.admin.model.SysDict;
 import com.jws.mango.admin.service.SysDictService;
 import com.jws.mango.core.mapper.CommonMapper;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SysDictServiceImpl extends CurdServiceImpl<SysDict> implements SysDictService {
+public class SysDictServiceImpl extends CurdServiceImpl<SysDict, Long> implements SysDictService {
 
     @Autowired
     private SysDictMapper sysDictMapper;
@@ -26,6 +27,16 @@ public class SysDictServiceImpl extends CurdServiceImpl<SysDict> implements SysD
     @Override
     public List<SysDict> findByLabel(String label) {
         return sysDictMapper.findByLabel(label);
+    }
+
+    @Override
+    public int save(SysDict record) {
+        if(record.getId() == null  || record.getId() == 0){
+            return add(record);
+        } else
+        {
+            return update(record);
+        }
     }
 
     @Override

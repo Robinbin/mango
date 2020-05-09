@@ -2,14 +2,15 @@ package com.jws.mango.core.mapper;
 
 import org.apache.ibatis.annotations.Param;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface CommonMapper<T> {
+public interface CommonMapper<T, ID extends Serializable> {
     long countByExample(T example);
 
     int deleteByExample(T example);
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(ID id);
 
     int insert(T record);
 
@@ -17,7 +18,7 @@ public interface CommonMapper<T> {
 
     List<T> selectByExample(T example);
 
-    T selectByPrimaryKey(Long id);
+    T selectByPrimaryKey(ID id);
 
     int updateByExampleSelective(@Param("record") T record, @Param("example") T example);
 
@@ -26,4 +27,6 @@ public interface CommonMapper<T> {
     int updateByPrimaryKeySelective(T record);
 
     int updateByPrimaryKey(T record);
+
+    List<T> findAll();
 }

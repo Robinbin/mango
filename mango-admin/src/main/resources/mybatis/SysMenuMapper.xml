@@ -335,4 +335,9 @@
       del_flag = #{delFlag,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="findAll" resultType="com.jws.mango.admin.model.SysMenu">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_menu
+  </select>
 </mapper>

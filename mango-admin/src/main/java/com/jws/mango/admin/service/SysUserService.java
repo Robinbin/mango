@@ -5,6 +5,7 @@ import com.jws.mango.core.service.CurdService;
 
 import java.util.List;
 
-public interface SysUserService extends CurdService<SysUser> {
-    List<SysUser> findAll();
+public interface SysUserService extends CurdService<SysUser, Long> {
+
+    int save(SysUser sysUser);
 }

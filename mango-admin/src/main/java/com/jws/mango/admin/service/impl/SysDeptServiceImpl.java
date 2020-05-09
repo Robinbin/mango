@@ -1,35 +1,24 @@
 package com.jws.mango.admin.service.impl;
 
+import com.jws.mango.admin.mapper.SysDeptMapper;
 import com.jws.mango.admin.model.SysDept;
 import com.jws.mango.admin.service.SysDeptService;
+import com.jws.mango.core.mapper.CommonMapper;
 import com.jws.mango.core.page.PageRequest;
 import com.jws.mango.core.page.PageResult;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class SysDeptServiceImpl implements SysDeptService {
-    @Override
-    public int save(SysDept record) {
-        return 0;
-    }
+@Service
+public class SysDeptServiceImpl extends CurdServiceImpl<SysDept, Long> implements SysDeptService {
+
+    @Autowired
+    private SysDeptMapper sysDeptMapper;
 
     @Override
-    public int delete(SysDept record) {
-        return 0;
-    }
-
-    @Override
-    public int delete(List<SysDept> records) {
-        return 0;
-    }
-
-    @Override
-    public SysDept findById(Long id) {
-        return null;
-    }
-
-    @Override
-    public PageResult findPage(PageRequest pageRequest) {
-        return null;
+    protected CommonMapper<SysDept, Long> getCommonMapper() {
+        return sysDeptMapper;
     }
 }

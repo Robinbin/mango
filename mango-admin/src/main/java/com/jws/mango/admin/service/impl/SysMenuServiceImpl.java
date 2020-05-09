@@ -1,35 +1,24 @@
 package com.jws.mango.admin.service.impl;
 
+import com.jws.mango.admin.mapper.SysMenuMapper;
 import com.jws.mango.admin.model.SysMenu;
 import com.jws.mango.admin.service.SysMenuService;
+import com.jws.mango.core.mapper.CommonMapper;
 import com.jws.mango.core.page.PageRequest;
 import com.jws.mango.core.page.PageResult;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class SysMenuServiceImpl implements SysMenuService {
-    @Override
-    public int save(SysMenu record) {
-        return 0;
-    }
+@Service
+public class SysMenuServiceImpl extends  CurdServiceImpl<SysMenu, Long> implements SysMenuService {
+
+    @Autowired
+    private SysMenuMapper sysMenuMapper;
 
     @Override
-    public int delete(SysMenu record) {
-        return 0;
-    }
-
-    @Override
-    public int delete(List<SysMenu> records) {
-        return 0;
-    }
-
-    @Override
-    public SysMenu findById(Long id) {
-        return null;
-    }
-
-    @Override
-    public PageResult findPage(PageRequest pageRequest) {
-        return null;
+    protected CommonMapper<SysMenu, Long> getCommonMapper() {
+        return sysMenuMapper;
     }
 }

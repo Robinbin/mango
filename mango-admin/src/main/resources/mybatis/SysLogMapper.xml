@@ -318,4 +318,9 @@
       remarks = #{remarks,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="findAll" resultType="com.jws.mango.admin.model.SysLog">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_log
+  </select>
 </mapper>

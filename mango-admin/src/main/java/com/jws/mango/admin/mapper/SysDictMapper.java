@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface SysDictMapper extends CommonMapper<SysDict> {
+public interface SysDictMapper extends CommonMapper<SysDict, Long> {
     List<SysDict> findPage();
 
     List<SysDict> findByLabel(@Param("label") String label);

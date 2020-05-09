@@ -1,22 +1,23 @@
 package com.jws.mango.core.service;
 
-import com.jws.mango.core.mapper.CommonMapper;
-import com.jws.mango.core.model.CommonModel;
 import com.jws.mango.core.page.PageRequest;
 import com.jws.mango.core.page.PageResult;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface CurdService<T, E> {
+public interface CurdService<T, ID extends Serializable> {
     int add(T record);
 
     int update(T record);
 
-    int delete(T record);
+    int delete(ID id);
 
-    int delete(List<E> ids);
+    int delete(List<ID> ids);
 
-    T findById(Long id);
+    T findById(ID id);
+
+    List<T> findAll();
 
     PageResult findPage(PageRequest pageRequest);
 }
