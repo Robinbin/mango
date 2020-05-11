@@ -12,9 +12,6 @@ import java.util.Date;
 @Getter
 @ToString
 public class SysDept extends CommonModel implements Serializable {
-
-    private static final long serialVersionUID = -349052237923604120L;
-
     private String name;
     private Long parentId;
     private Integer orderNum;
@@ -23,4 +20,5 @@ public class SysDept extends CommonModel implements Serializable {
     private String lastUpdateBy;
     private Date lastUpdateTime;
     private Byte delFlag;
+    private static final long serialVersionUID = -349052237923604120L;
 }

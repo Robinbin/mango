@@ -5,7 +5,6 @@ import com.jws.mango.core.page.MybatisPageHelper;
 import com.jws.mango.core.page.PageRequest;
 import com.jws.mango.core.page.PageResult;
 import com.jws.mango.core.service.CurdService;
-import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
 import java.util.List;
@@ -30,7 +29,7 @@ public abstract class CurdServiceImpl<T, ID extends Serializable> implements Cur
 
     @Override
     public int delete(List<ID> ids) {
-        ids.forEach(id->getCommonMapper().deleteByPrimaryKey(id));
+        ids.forEach(id -> getCommonMapper().deleteByPrimaryKey(id));
 
         return ids.size();
     }

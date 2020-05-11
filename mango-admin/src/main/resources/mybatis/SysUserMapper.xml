@@ -379,4 +379,10 @@
         <include refid="Base_Column_List"/>
         from sys_user
     </select>
+    <select id="findByName" resultType="com.jws.mango.admin.model.SysUser">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where name = #{name, jdbcType=VARCHAR}
+    </select>
 </mapper>

@@ -15,7 +15,7 @@ public class DruidDataSourceProperties {
 
     private int initialSize;
     private int minIdle;
-    private int maxActive =100;
+    private int maxActive = 100;
     private long maxWait;
     private long timeBetweenEvictionrunsMillis;
     private long minEvictableIdleTimeMillis;

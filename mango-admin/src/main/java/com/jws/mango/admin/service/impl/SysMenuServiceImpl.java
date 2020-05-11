@@ -4,15 +4,11 @@ import com.jws.mango.admin.mapper.SysMenuMapper;
 import com.jws.mango.admin.model.SysMenu;
 import com.jws.mango.admin.service.SysMenuService;
 import com.jws.mango.core.mapper.CommonMapper;
-import com.jws.mango.core.page.PageRequest;
-import com.jws.mango.core.page.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class SysMenuServiceImpl extends  CurdServiceImpl<SysMenu, Long> implements SysMenuService {
+public class SysMenuServiceImpl extends CurdServiceImpl<SysMenu, Long> implements SysMenuService {
 
     @Autowired
     private SysMenuMapper sysMenuMapper;
@@ -20,5 +16,14 @@ public class SysMenuServiceImpl extends  CurdServiceImpl<SysMenu, Long> implemen
     @Override
     protected CommonMapper<SysMenu, Long> getCommonMapper() {
         return sysMenuMapper;
+    }
+
+    @Override
+    public int save(SysMenu record) {
+        if (record.getId() == null || record.getId() == 0) {
+            return add(record);
+        } else {
+            return update(record);
+        }
     }
 }

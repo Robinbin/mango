@@ -260,4 +260,15 @@
     <include refid="Base_Column_List"/>
     from sys_role
   </select>
+
+  <select id="findPermissions" resultType="com.jws.mango.admin.model.SysRole">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_role
+    inner join sys_user_role
+    on sys_user_role.role_id = sys_role.id
+    inner join sys_user
+    on sys_user.id = sys_user_role.user_id
+    where sys_user.name = #{name, jdbcType=VARCHAR}
+  </select>
 </mapper>

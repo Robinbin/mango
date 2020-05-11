@@ -4,8 +4,6 @@ import com.jws.mango.admin.mapper.SysConfigMapper;
 import com.jws.mango.admin.model.SysConfig;
 import com.jws.mango.admin.service.SysConfigService;
 import com.jws.mango.core.mapper.CommonMapper;
-import com.jws.mango.core.page.PageRequest;
-import com.jws.mango.core.page.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -18,5 +16,19 @@ public class SysConfigServiceImpl extends CurdServiceImpl<SysConfig, Long> imple
     @Override
     protected CommonMapper<SysConfig, Long> getCommonMapper() {
         return sysConfigMapper;
+    }
+
+    @Override
+    public int save(SysConfig record) {
+        if (record.getId() == null || record.getId() == 0) {
+            return add(record);
+        } else {
+            return update(record);
+        }
+    }
+
+    @Override
+    public List<SysConfig> findByLabel(String label) {
+        return sysConfigMapper.findByLabel(label);
     }
 }

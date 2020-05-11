@@ -1,7 +1,6 @@
 package com.jws.mango.admin.service.impl;
 
 import com.jws.mango.admin.mapper.SysDictMapper;
-import com.jws.mango.admin.model.SysDept;
 import com.jws.mango.admin.model.SysDict;
 import com.jws.mango.admin.service.SysDictService;
 import com.jws.mango.core.mapper.CommonMapper;
@@ -31,10 +30,9 @@ public class SysDictServiceImpl extends CurdServiceImpl<SysDict, Long> implement
 
     @Override
     public int save(SysDict record) {
-        if(record.getId() == null  || record.getId() == 0){
+        if (record.getId() == null || record.getId() == 0) {
             return add(record);
-        } else
-        {
+        } else {
             return update(record);
         }
     }

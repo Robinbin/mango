@@ -1,5 +1,6 @@
 package com.jws.mango.admin.mapper;
 
+import com.jws.mango.admin.model.SysRole;
 import com.jws.mango.admin.model.SysUser;
 import com.jws.mango.core.mapper.CommonMapper;
 
@@ -9,4 +10,8 @@ public interface SysUserMapper extends CommonMapper<SysUser, Long> {
     List<SysUser> findAll();
 
     List<SysUser> findPage();
+
+    List<SysUser> findByName(String name);
+
+    List<SysRole> findPermissions(String name);
 }

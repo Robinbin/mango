@@ -1,6 +1,5 @@
 package com.jws.mango.admin.service;
 
-import com.jws.mango.admin.model.SysDept;
 import com.jws.mango.admin.model.SysDict;
 import com.jws.mango.core.service.CurdService;
 

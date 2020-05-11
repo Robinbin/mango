@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
 import javax.servlet.Servlet;
-import javax.sql.DataSource;
 
 @Configuration
 @EnableConfigurationProperties({com.jws.mango.admin.config.DruidDataSourceProperties.class})
