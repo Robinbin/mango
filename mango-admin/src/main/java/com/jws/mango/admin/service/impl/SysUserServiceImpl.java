@@ -1,8 +1,9 @@
 package com.jws.mango.admin.service.impl;
 
 import com.jws.mango.admin.mapper.SysUserMapper;
-import com.jws.mango.admin.model.SysRole;
+import com.jws.mango.admin.mapper.SysUserRoleMapper;
 import com.jws.mango.admin.model.SysUser;
+import com.jws.mango.admin.model.SysUserRole;
 import com.jws.mango.admin.service.SysUserService;
 import com.jws.mango.core.mapper.CommonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class SysUserServiceImpl extends CurdServiceImpl<SysUser, Long> implement
 
     @Autowired
     private SysUserMapper sysUserMapper;
+
+    @Autowired
+    private SysUserRoleMapper sysUserRoleMapper;
 
     @Override
     protected CommonMapper<SysUser, Long> getCommonMapper() {
@@ -36,7 +40,12 @@ public class SysUserServiceImpl extends CurdServiceImpl<SysUser, Long> implement
     }
 
     @Override
-    public List<SysRole> findPermissions(String name) {
-        return sysUserMapper.findPermissions(name);
+    public List<SysUserRole> findPermissions(String name) {
+        return sysUserRoleMapper.findPermissions(name);
+    }
+
+    @Override
+    public List<SysUserRole> findUserRoles(Long userid) {
+        return sysUserRoleMapper.findUserRoles(userid);
     }
 }

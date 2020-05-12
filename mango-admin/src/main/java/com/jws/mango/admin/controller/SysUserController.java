@@ -55,4 +55,9 @@ public class SysUserController {
     public HttpResult findPermissions(@RequestBody String name) {
         return HttpResult.ok(sysUserService.findPermissions(name));
     }
+
+    @PostMapping(value = "/findUserRoles")
+    public HttpResult findUserRoles(@RequestBody Long userid) {
+        return HttpResult.ok(sysUserService.findUserRoles(userid));
+    }
 }

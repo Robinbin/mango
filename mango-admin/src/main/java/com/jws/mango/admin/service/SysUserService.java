@@ -1,7 +1,7 @@
 package com.jws.mango.admin.service;
 
-import com.jws.mango.admin.model.SysRole;
 import com.jws.mango.admin.model.SysUser;
+import com.jws.mango.admin.model.SysUserRole;
 import com.jws.mango.core.service.CurdService;
 
 import java.util.List;
@@ -12,5 +12,7 @@ public interface SysUserService extends CurdService<SysUser, Long> {
 
     List<SysUser> findByName(String name);
 
-    List<SysRole> findPermissions(String name);
+    List<SysUserRole> findPermissions(String name);
+
+    List<SysUserRole> findUserRoles(Long userid);
 }

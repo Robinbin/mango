@@ -1,7 +1,7 @@
 package com.jws.mango.admin.controller;
 
 
-import com.jws.mango.admin.model.SysLog;
+import com.jws.mango.admin.model.SysLoginLog;
 import com.jws.mango.admin.service.SysLoginLogService;
 import com.jws.mango.core.http.HttpResult;
 import com.jws.mango.core.model.CommonModel;
@@ -22,7 +22,7 @@ public class SysLoginLogController {
     private SysLoginLogService sysLoginLogService;
 
     @PostMapping("/delete")
-    public HttpResult delete(@RequestBody List<SysLog> records) {
+    public HttpResult delete(@RequestBody List<SysLoginLog> records) {
         return HttpResult.ok(sysLoginLogService.delete(records.stream().map(CommonModel::getId).collect(Collectors.toList())));
     }
 

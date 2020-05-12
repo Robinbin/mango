@@ -7,6 +7,8 @@ import com.jws.mango.core.mapper.CommonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SysMenuServiceImpl extends CurdServiceImpl<SysMenu, Long> implements SysMenuService {
 
@@ -25,5 +27,15 @@ public class SysMenuServiceImpl extends CurdServiceImpl<SysMenu, Long> implement
         } else {
             return update(record);
         }
+    }
+
+    @Override
+    public List<SysMenu> findNavTree(String userName) {
+        return sysMenuMapper.findNavTree(userName);
+    }
+
+    @Override
+    public List<SysMenu> findMenuTree() {
+        return sysMenuMapper.findMenuTree();
     }
 }
