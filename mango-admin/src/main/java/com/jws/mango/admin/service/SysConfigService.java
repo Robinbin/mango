@@ -2,6 +2,7 @@ package com.jws.mango.admin.service;
 
 import com.jws.mango.admin.model.SysConfig;
 import com.jws.mango.core.service.CurdService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 

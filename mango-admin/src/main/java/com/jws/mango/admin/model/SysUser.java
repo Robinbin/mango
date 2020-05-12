@@ -26,5 +26,7 @@ public class SysUser extends CommonModel implements Serializable {
     private String lastUpdateBy;
     private Date lastUpdateTime;
     private Byte delFlag;
+    private String deptName;
+    private String roleNames;
     private static final long serialVersionUID = 2808393761876372650L;
 }

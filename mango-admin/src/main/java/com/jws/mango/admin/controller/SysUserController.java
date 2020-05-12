@@ -4,11 +4,14 @@ import com.jws.mango.admin.model.SysRole;
 import com.jws.mango.admin.model.SysUser;
 import com.jws.mango.admin.service.SysRoleService;
 import com.jws.mango.admin.service.SysUserService;
+import com.jws.mango.admin.util.FileUtils;
 import com.jws.mango.core.http.HttpResult;
 import com.jws.mango.core.page.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,5 +62,11 @@ public class SysUserController {
     @PostMapping(value = "/findUserRoles")
     public HttpResult findUserRoles(@RequestBody Long userid) {
         return HttpResult.ok(sysUserService.findUserRoles(userid));
+    }
+
+    @PostMapping(value = "/exportUserFile")
+    public void exportUserFile(@RequestBody PageRequest pageRequest, HttpServletResponse response) {
+        File file =sysUserService.createUserExcelFile(pageRequest);
+        FileUtils.downloadFile(response, file, file.getName());
     }
 }

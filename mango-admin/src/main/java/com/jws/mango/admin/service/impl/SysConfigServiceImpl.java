@@ -5,9 +5,11 @@ import com.jws.mango.admin.model.SysConfig;
 import com.jws.mango.admin.service.SysConfigService;
 import com.jws.mango.core.mapper.CommonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SysConfigServiceImpl extends CurdServiceImpl<SysConfig, Long> implements SysConfigService {
 
     @Autowired
