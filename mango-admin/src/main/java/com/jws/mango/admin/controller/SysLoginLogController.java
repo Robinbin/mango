@@ -3,8 +3,13 @@ package com.jws.mango.admin.controller;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
+import com.jws.mango.admin.filter.JwtAuthenticationFilter;
 import com.jws.mango.admin.model.SysLoginLog;
+import com.jws.mango.admin.model.SysUser;
 import com.jws.mango.admin.service.SysLoginLogService;
+import com.jws.mango.admin.service.SysUserService;
+import com.jws.mango.admin.util.PasswordUtils;
+import com.jws.mango.admin.util.SecurityUtils;
 import com.jws.mango.core.http.HttpResult;
 import com.jws.mango.core.model.CommonModel;
 import com.jws.mango.core.page.PageRequest;
@@ -28,6 +33,9 @@ public class SysLoginLogController {
     private SysLoginLogService sysLoginLogService;
 
     @Autowired
+    private SysUserService sysUserService;
+
+    @Autowired
     private Producer producer;
 
     @GetMapping("captcha.jpg")
@@ -46,6 +54,56 @@ public class SysLoginLogController {
     public HttpResult delete(@RequestBody List<SysLoginLog> records) {
         return HttpResult.ok(sysLoginLogService.delete(records.stream().map(CommonModel::getId).collect(Collectors.toList())));
     }
+
+    @PostMapping("/login")
+    public HttpResult login(@RequestBody LoginBean loginBean, HttpServletRequest request) {
+        String username = loginBean.getAccount();
+        String password = loginBean.getPassword();
+
+        Object kaptcha = request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
+        if (kaptcha == null) {
+            return HttpResult.error("验证码不正确");
+        }
+
+        SysUser user = sysUserService.findByName(username);
+        if (user == null) {
+            return HttpResult.error("帐号不存在");
+        }
+        if (!PasswordUtils.matches(user.getSalt(), password, user.getPassword())) {
+            return HttpResult.error("密码不正确");
+        }
+        if (user.getStatus() == 0) {
+            return HttpResult.error("帐号已被锁定，请联系管理员");
+        }
+
+        JwtAuthenticationToken token = SecurityUtils.login(request, username, password, authenticationManager);
+        return HttpResult.ok(token);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @PostMapping("/findPage")
     public HttpResult findPage(@RequestBody PageRequest pageRequest) {

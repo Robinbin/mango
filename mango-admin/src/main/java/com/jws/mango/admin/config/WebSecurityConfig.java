@@ -1,5 +1,7 @@
 package com.jws.mango.admin.config;
 
+import com.jws.mango.admin.filter.JwtAuthenticationFilter;
+import com.jws.mango.admin.security.JwtAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(new JwtAuth userDetailsService);
+        auth.authenticationProvider(new JwtAuthenticationProvider(userDetailsService));
     }
 
     @Override
@@ -41,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/actuator/**").permitAll()
                 .anyRequest().authenticated();
         http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
-        http.addFilterBefore(new JwtAuthenticationFiler(authenticationManager()), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(new JwtAuthenticationFilter(authenticationManager()), UsernamePasswordAuthenticationFilter.class);
 
     }
 

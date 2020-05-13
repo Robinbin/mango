@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class JwtTokenUtils {
+    private static final String AUTHORITIES_KEY = "auth";
+
     public static Authentication getAuthenticationFromToken(HttpServletRequest request) {
         Authentication authentication = null;
         String token = getToken(request);
@@ -29,7 +31,7 @@ public abstract class JwtTokenUtils {
                     return null;
                 }
 
-                Object authors = claims.get(AUTHORITIES);
+                Object authors = claims.get(AUTHORITIES_KEY);
                 List<GrantedAuthority> authorities = new ArrayList<>();
                 if (authors instanceof List) {
                     for (Object object : (List) authors) {
@@ -51,6 +53,14 @@ public abstract class JwtTokenUtils {
         }
 
         return authentication;
+    }
+
+    private static boolean validateToken(String token, String username) {
+        return false;
+    }
+
+    private static boolean isTokenExpired(String token) {
+        return false;
     }
 
     public static String getToken(HttpServletRequest request) {
