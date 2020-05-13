@@ -7,14 +7,15 @@ import com.jws.mango.core.service.CurdService;
 
 import java.io.File;
 import java.util.List;
+import java.util.Set;
 
 public interface SysUserService extends CurdService<SysUser, Long> {
 
     int save(SysUser sysUser);
 
-    List<SysUser> findByName(String name);
+    SysUser findByName(String name);
 
-    List<SysUserRole> findPermissions(String name);
+    Set<String> findPermissions(String name);
 
     List<SysUserRole> findUserRoles(Long userid);
 

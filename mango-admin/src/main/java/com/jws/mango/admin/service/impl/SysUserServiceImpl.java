@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class SysUserServiceImpl extends CurdServiceImpl<SysUser, Long> implements SysUserService {
@@ -45,12 +46,17 @@ public class SysUserServiceImpl extends CurdServiceImpl<SysUser, Long> implement
     }
 
     @Override
-    public List<SysUser> findByName(String name) {
-        return sysUserMapper.findByName(name);
+    public SysUser findByName(String name) {
+        List<SysUser> sysUsers = sysUserMapper.findByName(name);
+        if (sysUsers.isEmpty()) {
+            return null;
+        } else {
+            return sysUsers.get(0);
+        }
     }
 
     @Override
-    public List<SysUserRole> findPermissions(String name) {
+    public Set<String> findPermissions(String name) {
         return sysUserRoleMapper.findPermissions(name);
     }
 
