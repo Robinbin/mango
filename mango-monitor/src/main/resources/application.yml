@@ -1,0 +1,6 @@
+server:
+  port: 6082
+
+spring:
+  application:
+    name: mango-monitor

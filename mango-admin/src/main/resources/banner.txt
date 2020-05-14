@@ -6,4 +6,4 @@
 \____/  \/  \/\____/  \_|  |_/\__,_|_| |_|\__, |\___/
                                            __/ |
                                           |___/
- :: JWS Mango Application ::             (v1.0.0)
+ :: JWS Mango Application ::             (v1.0.0-SNAPSHOT)

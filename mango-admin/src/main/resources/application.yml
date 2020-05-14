@@ -49,6 +49,10 @@ Spring:
         # 登录用户名/密码
         login-username: admin
         login-password: admin
+  boot:
+    admin:
+      client:
+        url: http://localhost:6082
 
 mybatis:
   mapper-locations:
@@ -59,3 +63,9 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+
+management:
+  endpoints:
+    web:
+      expose:
+        include: "*"
