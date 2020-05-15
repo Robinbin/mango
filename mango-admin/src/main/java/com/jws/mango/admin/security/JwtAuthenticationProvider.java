@@ -7,10 +7,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class JwtAuthenticationProvider extends DaoAuthenticationProvider {
-    public JwtAuthenticationProvider(UserDetailsService userDetailsService){
+    public JwtAuthenticationProvider(UserDetailsService userDetailsService) {
         setUserDetailsService(userDetailsService);
     }
 
@@ -18,13 +17,13 @@ public class JwtAuthenticationProvider extends DaoAuthenticationProvider {
     protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
         if (authentication.getCredentials() == null) {
             logger.debug("Authentication failed: no credentials provided");
-            throw new BadCredentialsException(messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials","Bad credentials"));
+            throw new BadCredentialsException(messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentials"));
         }
         String presentedPassword = authentication.getCredentials().toString();
 //        String salt = ((JwtUserDetails)userDetails).getSalt();
         if (!PasswordEncoderFactories.createDelegatingPasswordEncoder().matches(userDetails.getPassword(), presentedPassword)) {
             logger.debug("Authentication failed: password does not match");
-            throw new BadCredentialsException(messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials","Bad credentils"));
+            throw new BadCredentialsException(messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentils"));
         }
     }
 }
