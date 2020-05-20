@@ -73,7 +73,7 @@ public class SysUserServiceImpl extends CurdServiceImpl<SysUser, Long> implement
     }
 
     private File createUserExcelFile(List<?> contents) {
-        if(contents == null){
+        if (contents == null) {
             contents = new ArrayList<>();
         }
 
@@ -94,7 +94,7 @@ public class SysUserServiceImpl extends CurdServiceImpl<SysUser, Long> implement
         row0.createCell(++columnIndex).setCellValue("创建人");
         row0.createCell(++columnIndex).setCellValue("最后更新人");
         row0.createCell(++columnIndex).setCellValue("最后更新时间");
-        for (int i = 0;i<contents.size();i++) {
+        for (int i = 0; i < contents.size(); i++) {
             SysUser user = (SysUser) contents.get(i);
             Row row = sheet.createRow(i);
             for (int j = 0; j < columnIndex + 1; j++) {
@@ -117,18 +117,6 @@ public class SysUserServiceImpl extends CurdServiceImpl<SysUser, Long> implement
         }
         return PoiUtils.createExcelFile(workbook, "download_user");
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

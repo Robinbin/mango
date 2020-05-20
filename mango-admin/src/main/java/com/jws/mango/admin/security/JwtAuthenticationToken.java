@@ -8,10 +8,10 @@ import java.util.Collection;
 
 public class JwtAuthenticationToken implements Authentication {
     private String username;
-    private String  password;
+    private String password;
 
     public JwtAuthenticationToken(String username, String password) {
-        this.username= username;
+        this.username = username;
         this.password = password;
     }
 

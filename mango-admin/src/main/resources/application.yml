@@ -2,6 +2,8 @@ server:
   port: 6080
 
 Spring:
+  application:
+    name: mango-admin
   datasource:
     name: druidDatabase
     type: com.alibaba.druid.pool.DruidDataSource
@@ -53,6 +55,18 @@ Spring:
     admin:
       client:
         url: http://localhost:6082
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        serviceName: ${spring.application.name}
+
+management:
+  endpoints:
+    web:
+      expose:
+        include: "*"
 
 mybatis:
   mapper-locations:

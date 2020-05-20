@@ -21,6 +21,7 @@ mango:
       username: root
       password: 123456
       database: mango
+
 management:
   endpoints:
     web:

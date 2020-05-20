@@ -1,6 +1,5 @@
 package com.jws.mango.admin.util;
 
-import com.jws.mango.admin.filter.JwtAuthenticationFilter;
 import com.jws.mango.admin.security.JwtAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
@@ -34,29 +33,6 @@ public abstract class SecurityUtils {
 
         return token;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

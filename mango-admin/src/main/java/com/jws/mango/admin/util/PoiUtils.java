@@ -19,7 +19,7 @@ public abstract class PoiUtils {
             workbook.write(os);
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             IOUtils.closeQuietly(workbook);
             IOUtils.closeQuietly(os);
         }

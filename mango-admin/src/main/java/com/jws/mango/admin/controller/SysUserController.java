@@ -66,7 +66,7 @@ public class SysUserController {
 
     @PostMapping(value = "/exportUserFile")
     public void exportUserFile(@RequestBody PageRequest pageRequest, HttpServletResponse response) {
-        File file =sysUserService.createUserExcelFile(pageRequest);
+        File file = sysUserService.createUserExcelFile(pageRequest);
         FileUtils.downloadFile(response, file, file.getName());
     }
 }

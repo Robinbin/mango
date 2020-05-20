@@ -3,7 +3,6 @@ package com.jws.mango.admin.controller;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
-import com.jws.mango.admin.filter.JwtAuthenticationFilter;
 import com.jws.mango.admin.model.SysLoginLog;
 import com.jws.mango.admin.model.SysUser;
 import com.jws.mango.admin.service.SysLoginLogService;
@@ -50,6 +49,7 @@ public class SysLoginLogController {
 
         IOUtils.closeQuietly(out);
     }
+
     @PostMapping("/delete")
     public HttpResult delete(@RequestBody List<SysLoginLog> records) {
         return HttpResult.ok(sysLoginLogService.delete(records.stream().map(CommonModel::getId).collect(Collectors.toList())));
@@ -79,30 +79,6 @@ public class SysLoginLogController {
         JwtAuthenticationToken token = SecurityUtils.login(request, username, password, authenticationManager);
         return HttpResult.ok(token);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     @PostMapping("/findPage")
