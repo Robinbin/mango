@@ -1,26 +1,19 @@
 server:
-  port: 6081
+  port: 6083
 
 spring:
   application:
-    name: mango-backup
-  boot:
-    admin:
-      client:
-        url: http://localhost:6082
+    name: mango-producer
   cloud:
     consul:
       host: localhost
       port: 8500
       discovery:
         serviceName: ${spring.application.name}
-mango:
-  backup:
-    datasource:
-      host: localhost
-      username: root
-      password: 123456
-      database: mango
+  boot:
+    admin:
+      client:
+        url: http://localhost:6082
 
 management:
   endpoints:

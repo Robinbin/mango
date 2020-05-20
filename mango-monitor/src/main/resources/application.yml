@@ -16,3 +16,6 @@ management:
     web:
       expose:
         include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS

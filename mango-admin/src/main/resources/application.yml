@@ -67,7 +67,10 @@ management:
     web:
       expose:
         include: "*"
-
+  endpoint:
+    health:
+      show-details: ALWAYS
+      
 mybatis:
   mapper-locations:
     - classpath:mybatis/*.xml
@@ -77,9 +80,3 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
-
-management:
-  endpoints:
-    web:
-      expose:
-        include: "*"

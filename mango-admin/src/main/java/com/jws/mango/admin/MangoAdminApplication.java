@@ -6,8 +6,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication(scanBasePackages = {"com.jws.mango.admin"})
 @EnableDiscoveryClient
-public class MangoWebApplication {
+public class MangoAdminApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MangoWebApplication.class, args);
+        SpringApplication.run(MangoAdminApplication.class, args);
     }
 }
