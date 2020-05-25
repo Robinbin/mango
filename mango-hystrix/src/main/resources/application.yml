@@ -1,9 +1,9 @@
 server:
-  port: 6085
+  port: 6086
 
 spring:
   application:
-    name: mango-consumer
+    name: mango-hystrix
   cloud:
     consul:
       host: localhost
@@ -24,6 +24,8 @@ management:
     health:
       show-details: ALWAYS
 
-feign:
-  hystrix:
-    enabled: true
+turbine:
+  instanceUrlSuffix: hystrix.stream
+  appConfig: mango-consumer
+  clusterNameExpression: "'default'"
+  combine-host-port: true

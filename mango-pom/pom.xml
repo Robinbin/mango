@@ -14,5 +14,9 @@
         <module>../mango-common</module>
         <module>../mango-core</module>
         <module>../mango-backup</module>
+        <module>../mango-consumer</module>
+        <module>../mango-hystrix</module>
+        <module>../mango-monitor</module>
+        <module>../mango-producer</module>
     </modules>
 </project>

@@ -10,17 +10,22 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 @Slf4j
-public class CallHelloController {
+public class LoadBalanceHelloController {
     @Autowired
     private LoadBalancerClient loadBalancerClient;
 
-    @RequestMapping("/call")
+    @Autowired
+    private RestTemplate restTemplate;
+
+    //    @HystrixCommand(fallbackMethod = "findByIdFallback")
+    @RequestMapping("/lb/call")
     public String call() {
         ServiceInstance serviceInstance = loadBalancerClient.choose("mango-producer");
-        log.info("Service Address: {}", serviceInstance.getHost());
+        log.info("Service Address: {}", serviceInstance.getUri().toString());
         log.info("Service Name: {}", serviceInstance.getServiceId());
 
-        String callServiceResult = new RestTemplate().getForObject(serviceInstance.getUri().toString() + "/hello", String.class);
+        String url = "http://" + serviceInstance.getServiceId() + ":" + serviceInstance.getPort() + "/hello";
+        String callServiceResult = restTemplate.getForObject(url, String.class);
         log.info("Call Result: {}", callServiceResult);
 
         return callServiceResult;

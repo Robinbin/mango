@@ -1,9 +1,9 @@
 server:
-  port: 6085
+  port: 6090
 
 spring:
   application:
-    name: mango-consumer
+    name: mango-zuul
   cloud:
     consul:
       host: localhost
@@ -24,6 +24,11 @@ management:
     health:
       show-details: ALWAYS
 
-feign:
-  hystrix:
-    enabled: true
+zuul:
+  routes:
+    ribbon:
+      path: /ribbon/**
+      serviceId: mango-consumer
+    feign:
+      path: /feign/**
+      serviceId: mango-consumer
