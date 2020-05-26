@@ -1,7 +1,10 @@
 package com.jws.mango.admin.service.impl;
 
+import com.jws.mango.admin.mapper.SysMenuMapper;
+import com.jws.mango.admin.mapper.SysRoleMenuMapper;
 import com.jws.mango.admin.mapper.SysUserMapper;
 import com.jws.mango.admin.mapper.SysUserRoleMapper;
+import com.jws.mango.admin.model.SysRoleMenu;
 import com.jws.mango.admin.model.SysUser;
 import com.jws.mango.admin.model.SysUserRole;
 import com.jws.mango.admin.service.SysUserService;
@@ -31,6 +34,9 @@ public class SysUserServiceImpl extends CurdServiceImpl<SysUser, Long> implement
     @Autowired
     private SysUserRoleMapper sysUserRoleMapper;
 
+    @Autowired
+    private SysMenuMapper sysMenuMapper;
+
     @Override
     protected CommonMapper<SysUser, Long> getCommonMapper() {
         return sysUserMapper;
@@ -57,7 +63,7 @@ public class SysUserServiceImpl extends CurdServiceImpl<SysUser, Long> implement
 
     @Override
     public Set<String> findPermissions(String name) {
-        return sysUserRoleMapper.findPermissions(name);
+        return sysMenuMapper.findPermissions(name);
     }
 
     @Override

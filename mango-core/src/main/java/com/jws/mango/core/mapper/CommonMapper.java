@@ -1,7 +1,5 @@
 package com.jws.mango.core.mapper;
 
-import org.apache.ibatis.annotations.Param;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -20,9 +18,9 @@ public interface CommonMapper<T, ID extends Serializable> {
 
     T selectByPrimaryKey(ID id);
 
-    int updateByExampleSelective(@Param("record") T record, @Param("example") T example);
+    int updateByExampleSelective(T record, T example);
 
-    int updateByExample(@Param("record") T record, @Param("example") T example);
+    int updateByExample(T record, T example);
 
     int updateByPrimaryKeySelective(T record);
 

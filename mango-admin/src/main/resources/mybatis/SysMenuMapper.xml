@@ -352,4 +352,16 @@
         <include refid="Base_Column_List"/>
         from sys_menu
     </select>
+    <select id="findPermissions" resultType="java.lang.String">
+        select
+        sm.perms
+        from
+        sys_menu sm
+        inner join sys_role_menu srm on
+        srm.menu_id = sm.id
+        inner join sys_user su on
+        su.id = srm.user_id
+        where
+        su.name = #{name,jdbcType=VARCHAR};
+    </select>
 </mapper>

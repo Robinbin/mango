@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface SysUserRoleMapper extends CommonMapper<SysUserRole, Long> {
     List<SysUserRole> findUserRoles(Long userId);
-
-    List<SysUserRole> findPermissions(String userName);
 }
