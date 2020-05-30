@@ -19,6 +19,7 @@ public class JwtAuthenticationProvider extends DaoAuthenticationProvider {
             logger.debug("Authentication failed: no credentials provided");
             throw new BadCredentialsException(messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentials"));
         }
+        //TODO: Need to implement the JWT authentication and authorization
         String presentedPassword = authentication.getCredentials().toString();
 //        String salt = ((JwtUserDetails)userDetails).getSalt();
         if (!PasswordEncoderFactories.createDelegatingPasswordEncoder().matches(userDetails.getPassword(), presentedPassword)) {

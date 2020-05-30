@@ -1,29 +1,36 @@
 server:
-  port: 6085
+  port: 6020
 
 spring:
   application:
-    name: mango-consumer
+    name: mango-config
+  profiles:
+    active: native
   cloud:
     consul:
       host: localhost
       port: 8500
       discovery:
         serviceName: ${spring.application.name}
+    config:
+#      label: master
+      server:
+#        git:
+#          uri: https://.git
+#          search-paths: mango-config-repo
+#          username: aa
+#          password: aa
+        native:
+          search-locations: classpath:config
   boot:
     admin:
       client:
         url: http://localhost:6082
-  zipkin:
-    base-url: http://localhost:9411/
-  sleuth:
-    sampler:
-      probablity: 1
 
 management:
   endpoints:
     web:
-      exposure:
+      expose:
         include: "*"
   endpoint:
     health:

@@ -9,6 +9,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @EnableZuulProxy
 public class MangoZuulApplication {
     public static void main(String[] args) {
+        //TODO: Can't access the service via zuul
         SpringApplication.run(MangoZuulApplication.class, args);
     }
 }
