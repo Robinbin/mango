@@ -26,11 +26,16 @@ spring:
     admin:
       client:
         url: http://localhost:6082
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 management:
   endpoints:
     web:
-      expose:
+      exposure:
         include: "*"
   endpoint:
     health:
