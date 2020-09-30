@@ -1,12 +1,12 @@
 package com.jws.mango;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class MangoApplicationTests {
 
-	@Test
+//	@Test
 	void contextLoads() {
 	}
 

@@ -16,11 +16,11 @@ public abstract class SecurityUtils {
     }
 
     public static Authentication getAuthentication() {
-
+        return null;
     }
 
     public static String getUsername() {
-
+        return "";
     }
 
     public static JwtAuthenticationToken login(HttpServletRequest request, String username,
@@ -29,7 +29,7 @@ public abstract class SecurityUtils {
         token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         Authentication authentication = authenticationManager.authenticate(token);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        token.setToken(JwtTokenUtils.generateToken(authentication));
+//        token.setToken(JwtTokenUtils.generateToken(authentication));
 
         return token;
     }

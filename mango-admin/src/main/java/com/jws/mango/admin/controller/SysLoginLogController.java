@@ -78,7 +78,8 @@ public class SysLoginLogController {
             return HttpResult.error("帐号已被锁定，请联系管理员");
         }
 
-        JwtAuthenticationToken token = SecurityUtils.login(request, username, password, authenticationManager);
+        JwtAuthenticationToken token = SecurityUtils.login(request, username, password, null);
+//        JwtAuthenticationToken token = SecurityUtils.login(request, username, password, authenticationManager);
         return HttpResult.ok(token);
     }
 

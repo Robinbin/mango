@@ -44,7 +44,8 @@ public abstract class JwtTokenUtils {
                     }
                 }
 
-                authentication = new JwtAuthenticationToken(username, null, authorities, token);
+                authentication = null;
+//                authentication = new JwtAuthenticationToken(username, null, authorities, token);
             } else {
                 if (validateToken(token, SecurityUtils.getUsername())) {
                     authentication = SecurityUtils.getAuthentication();
@@ -53,6 +54,10 @@ public abstract class JwtTokenUtils {
         }
 
         return authentication;
+    }
+
+    private static Claims getClaimsFromToken(String token) {
+        return null;
     }
 
     private static boolean validateToken(String token, String username) {
