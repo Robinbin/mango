@@ -16,6 +16,7 @@ pipeline {
 
         stage('Compile') {
             steps {
+                sh "cd mango-pom"
                 sh "mvn clean compile"
             }
         }
