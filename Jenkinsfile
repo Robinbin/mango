@@ -26,6 +26,7 @@ pipeline {
 
         stage('Test') {
             steps {
+				sh "ls -all"
                 sh "mvn test"
             }
         }
