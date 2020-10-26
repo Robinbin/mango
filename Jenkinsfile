@@ -26,20 +26,29 @@ pipeline {
 
         stage('Test') {
             steps {
-				sh "ls -all"
-                sh "mvn test"
+				sh """
+					cd mango-pom
+					mvn test
+					"""
             }
         }
 
         stage('Sonar Check') {
             steps {
-                sh "mvn sonar:sonar -D sonar.projectKey=mango -D sonar.host.url=http://localhost:9001 -D sonar.login=30d89602c0b2437d2f3463e3364126fd5405b1d8"
+                sh """
+					cd mango-pom
+					mvn sonar:sonar -D sonar.projectKey=mango -D sonar.host.url=http://localhost:9001 -D sonar.login=30d89602c0b2437d2f3463e3364126fd5405b1d8
+					"""
             }
         }
 
         stage('Clean') {
             steps {
-                sh "mvn clean"
+                sh """
+					cd mango-pom
+					mvn clean
+					ls -all
+					"""
             }
         }
     }
