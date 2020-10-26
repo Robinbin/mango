@@ -11,7 +11,7 @@ properties(
 				)
 		),
 		disableConcurrentBuilds()
-	}
+	]
 )
 
 node {
