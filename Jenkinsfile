@@ -16,8 +16,11 @@ pipeline {
 
         stage('Compile') {
             steps {
-                sh "cd mango-pom"
-                sh "mvn clean compile"
+                sh """
+					cd mango-pom
+					ls -all
+					mvn clean compile
+					"""
             }
         }
 
@@ -29,7 +32,7 @@ pipeline {
 
         stage('Sonar Check') {
             steps {
-                sh "mvn sonar:sonar -Dsonar.projectKey=mango -Dsonar.host.url=http://localhost:9001 -Dsonar.login=1877428d8135046181ae8571157e5ce69b38b004\n"
+                sh "mvn sonar:sonar -D sonar.projectKey=mango -D sonar.host.url=http://localhost:9001 -D sonar.login=30d89602c0b2437d2f3463e3364126fd5405b1d8"
             }
         }
 
