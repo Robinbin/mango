@@ -1,56 +1,58 @@
 #!/usr/bin/env groovy
 
+properties(
+	[
+		buildDiscarder(
+				logRotator(
+						artifactDaysToKeepStr: '4',
+						artifactNumToKeepStr: '2',
+						daysToKeepStr: '15',
+						numToKeepStr: '12'
+				)
+		),
+		disableConcurrentBuilds()
+	}
+)
+
 node {
-    agent any
+    timestamps {
+		stage('Checkout') {
+			checkout([$class                           : 'GitSCM',
+					  branches                         : [[name: '*/master']],
+					  doGenerateSubmoduleConfigurations: false,
+					  extensions                       : [[$class: 'CleanCheckout']],
+					  submoduleCfg                     : [],
+					  userRemoteConfigs                : [[url: 'https://github.com/Robinbin/mango.git']]])				
+		}
 
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout([$class                           : 'GitSCM',
-                          branches                         : [[name: '*/master']],
-                          doGenerateSubmoduleConfigurations: false,
-                          extensions                       : [],
-                          submoduleCfg                     : [],
-                          userRemoteConfigs                : [[url: 'https://github.com/Robinbin/mango.git']]])
-            }
-        }
+		stage('Compile') {
+			sh """
+				cd mango-pom
+				ls -all
+				mvn clean compile
+				"""			
+		}
 
-        stage('Compile') {
-            steps {
-                sh """
-					cd mango-pom
-					ls -all
-					mvn clean compile
-					"""
-            }
-        }
+		stage('Test') {
+			sh """
+				cd mango-pom
+				mvn test
+				"""
+		}
 
-        stage('Test') {
-            steps {
-				sh """
-					cd mango-pom
-					mvn test
-					"""
-            }
-        }
+		stage('Sonar') {
+			sh """
+				cd mango-pom
+				mvn sonar:sonar -D sonar.projectKey=mango -D sonar.host.url=http://10.72.161.11:9001 -D sonar.login=30d89602c0b2437d2f3463e3364126fd5405b1d8
+				"""
+		}
 
-        stage('Sonar Check') {
-            steps {
-                sh """
-					cd mango-pom
-					mvn sonar:sonar -D sonar.projectKey=mango -D sonar.host.url=http://10.72.161.11:9001 -D sonar.login=30d89602c0b2437d2f3463e3364126fd5405b1d8
-					"""
-            }
-        }
-
-        stage('Clean') {
-            steps {
-                sh """
-					cd mango-pom
-					mvn clean
-					ls -all
-					"""
-            }
-        }
-    }
+		stage('Clean') {
+			sh """
+				cd mango-pom
+				mvn clean
+				ls -all
+				"""
+		}
+	}
 }
