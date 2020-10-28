@@ -46,6 +46,7 @@ node {
 					cd mango-pom
 					mvn sonar:sonar
 					"""
+				junit '**/target/surefire-reports/*.xml'
 			}
 		}
 		
