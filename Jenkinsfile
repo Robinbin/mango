@@ -42,14 +42,13 @@ node {
 
 		stage('Sonar') {
 			withSonarQubeEnv('My SonarQube Server') {
-			sh """
-				cd mango-pom
-				mvn sonar:sonar
-				"""
+				sh """
+					cd mango-pom
+					mvn sonar:sonar
+					"""
 			}
-			
-			# -D sonar.projectKey=mango -D sonar.host.url=http://10.72.161.11:9001 -D sonar.login=30d89602c0b2437d2f3463e3364126fd5405b1d8
 		}
+		
 		stage("Quality Gate") {
             timeout(time: 1, unit: 'HOURS') {
                 waitForQualityGate abortPipeline: true
