@@ -72,7 +72,7 @@ public class MangoApplicationTests {
         }
     }
 
-    @Test
+//    @Test
     public void genFile() {
         String fileName = "D:\\temp\\test.csv";
         File file = new File(fileName);
