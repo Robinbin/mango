@@ -1,8 +1,14 @@
 package com.jws.mango;
 
 import org.junit.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -63,6 +69,22 @@ public class MangoApplicationTests {
 
         public void setWeight(int weight) {
             this.weight = weight;
+        }
+    }
+
+    @Test
+    public void genFile() {
+        String fileName = "D:\\temp\\test.csv";
+        File file = new File(fileName);
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            fos.write(new byte[]{(byte) 0xEF, (byte) 0xBB, (byte) 0xBF});
+            fos.flush();
+
+            BufferedWriter writer = Files.newBufferedWriter(Paths.get(fileName), StandardCharsets.UTF_8);
+            writer.write("ァイウオガギゴザジスズセゼソダカチョウ");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
