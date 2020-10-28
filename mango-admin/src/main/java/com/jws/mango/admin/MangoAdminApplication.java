@@ -8,6 +8,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDiscoveryClient
 public class MangoAdminApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MangoAdminApplication.class, args);
+        String username = "test";
+        String password = "123456";
+
+        SpringApplication.run(MangoAdminApplication.class, new String[]{username, password});
     }
 }
