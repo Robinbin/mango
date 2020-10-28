@@ -9,18 +9,20 @@ public abstract class FileUtils {
         try {
             response.setHeader("Content-Disposition", "attachment; filename=" +
                     new String(newFileName.getBytes(StandardCharsets.ISO_8859_1.name()), StandardCharsets.UTF_8.name()));
-            BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
-            InputStream is = new FileInputStream(file.getAbsolutePath());
-            BufferedInputStream bis = new BufferedInputStream(is);
-            int length = 0;
-            byte[] temp = new byte[1024 * 10];
-            while ((length = bis.read(temp)) != -1) {
-                bos.write(temp, 0, length);
+            try (BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream())) {
+
+                try (InputStream is = new FileInputStream(file.getAbsolutePath())) {
+                    try (BufferedInputStream bis = new BufferedInputStream(is)) {
+                        int length = 0;
+                        byte[] temp = new byte[1024 * 10];
+                        while ((length = bis.read(temp)) != -1) {
+                            bos.write(temp, 0, length);
+                        }
+                        bos.flush();
+                    }
+                    bos.close();
+                }
             }
-            bos.flush();
-            bis.close();
-            bos.close();
-            is.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
