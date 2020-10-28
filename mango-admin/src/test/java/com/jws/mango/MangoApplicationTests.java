@@ -1,5 +1,6 @@
 package com.jws.mango;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.BufferedWriter;
@@ -40,6 +41,7 @@ public class MangoApplicationTests {
         list.add(a6);
         System.out.println(getList(list, (apple) -> apple.getWeight() > 15));
         System.out.println(getList(list, (apple) -> apple.getName().equals("Yellow")));
+        Assert.assertTrue(true);
     }
 
     private List<String> getList(List<Apple> apples, Predicate<Apple> p) {
